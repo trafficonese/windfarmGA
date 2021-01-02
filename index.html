@@ -140,14 +140,14 @@
 <div id="rectangular-grid-cells" class="section level3">
 <h3 class="hasAnchor">
 <a href="#rectangular-grid-cells" class="anchor"></a>Rectangular Grid Cells</h3>
-<p>Verify that the grid spacing is appropriate. Adapt the following input variables if desired:</p>
+<p>Verify that the grid spacing is appropriate. Adapt the following input variables if necessary:</p>
 <ul>
 <li>
-<em>Rotor</em>: The desired rotor radius in meters.</li>
+<em>Rotor</em>: The rotor radius in meters.</li>
 <li>
 <em>fcrR</em>: The grid spacing factor, which should at least be 2, so that a single grid covers at least the whole rotor diameter.</li>
 <li>
-<em>prop</em>: The proportionality factor used for grid calculation. It determines the percentage a grid has to overlay the considered area to be represented as grid cell.</li>
+<em>prop</em>: The proportionality factor used for grid calculation. It determines the minimum percentage that a grid cell must cover of the area.</li>
 </ul>
 <p><em>Make sure that the Polygon is projected in meters.</em></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">Rotor</span> <span class="op">&lt;</span>- 20</span>
@@ -163,7 +163,7 @@
 <span id="cb8-3"><a href="#cb8-3"></a><span class="ex">HexGrid</span> <span class="op">&lt;</span>- hexa_area(Polygon1, size = (Rotor * fcrR), <span class="ex">plotGrid</span> = TRUE)</span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="ex">str</span>(HexGrid)</span></code></pre></div>
 <p align="center">
-<img src="https://raw.githubusercontent.com/YSoSirius/windfarmGA/master/inst/img/hexagon.png" width="300"></p>
+<img src="https://raw.githubusercontent.com/YSoSirius/windfarmGA/master/inst/img/grids.png" width="300"></p>
 </div>
 </div>
 <div id="terrain-effect-model" class="section level2">
