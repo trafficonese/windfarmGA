@@ -85,9 +85,6 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
-</li>
-<li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
@@ -151,18 +148,17 @@
     <tr>
       <th>referenceHeight</th>
       <td><p>The height at which the incoming wind speeds were
-measured (numeric)</p></td>
+measured. Default is <code>RotorHeight</code></p></td>
     </tr>
     <tr>
       <th>RotorHeight</th>
-      <td><p>The desired height of the turbines (numeric)</p></td>
+      <td><p>The height of the turbine hub</p></td>
     </tr>
     <tr>
       <th>SurfaceRoughness</th>
-      <td><p>A surface roughness length of the considered area in
-m. If the terrain effect model is activated, a surface roughness will be
-calculated for every grid cell with the elevation and land cover
-information (numeric)</p></td>
+      <td><p>A surface roughness length in meters. 
+With the terrain effect model, a surface roughness is calculated for every 
+grid cell using the elevation and land cover data. Default is <code>0.3</code></p></td>
     </tr>
     <tr>
       <th>wnkl</th>
@@ -193,18 +189,22 @@ and 3) a terrain raster. Calculated in <code><a href='genetic_algorithm.html'>ge
     </tr>
     <tr>
       <th>topograp</th>
-      <td><p>Logical value that indicates whether the terrain effect model
-is activated (TRUE) or deactivated (FALSE)</p></td>
+      <td><p>Boolean value, which indicates if the terrain effect model
+should be enabled or not. Default is <code>FALSE</code></p></td>
     </tr>
     <tr>
       <th>cclRaster</th>
-      <td><p>A Corine Land Cover raster that has to be downloaded
-previously. See also the details at <code><a href='windfarmGA.html'>windfarmGA</a></code> The raster
-will only be used when the terrain effect model is activated. (raster)</p></td>
+      <td><p>A Corine Land Cover raster, that has to be adapted
+previously by hand with the surface roughness length for every land cover
+type. Is only used, when the terrain effect model is activated.</p></td>
     </tr>
     <tr>
       <th>weibull</th>
-      <td><p>A raster representing the estimated mean wind speeds</p></td>
+      <td><p>A boolean value that specifies whether to take Weibull
+parameters into account. If <code>TRUE</code>, the wind speed values 
+of <code>vdirspe</code> are ignored. The algorithm will calculate the mean
+wind speed for every wind turbine according to the Weibull parameters.
+Default is <code>FALSE</code></p></td>
     </tr>
     <tr>
       <th>plotit</th>

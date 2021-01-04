@@ -83,9 +83,6 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
-</li>
-<li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
@@ -143,9 +140,9 @@ generation</p></td>
     </tr>
     <tr>
       <th>trimForce</th>
-      <td><p>A boolean value which determines which adjustment method
-should be used. TRUE uses a probabilistic approach and FALSE uses a random
-approach</p></td>
+      <td><p>If <code>TRUE</code> the algorithm will use a probabilistic 
+approach to correct the windfarms to the desired amount of turbines. 
+If <code>FALSE</code> the adjustment will be random. Default is <code>FALSE</code></p></td>
     </tr>
     <tr>
       <th>seed</th>
@@ -182,7 +179,7 @@ approach</p></td>
 <span class='co'>## Create a uniform and unidirectional wind data.frame and plots the</span>
 <span class='co'>## resulting wind rose</span>
 <span class='co'>## Uniform wind speed and single wind direction</span>
-<span class='va'>data.in</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/raster/man/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span>ws<span class='op'>=</span><span class='fl'>12</span>,wd<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>data.in</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/raster/man/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span>ws<span class='op'>=</span><span class='fl'>12</span>, wd<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>## Calculate a Grid and an indexed data.frame with coordinates and grid cell Ids.</span>
 <span class='va'>Grid1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='grid_area.html'>grid_area</a></span><span class='op'>(</span>shape <span class='op'>=</span> <span class='va'>Polygon1</span>, size <span class='op'>=</span> <span class='fl'>200</span>, prop <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>;
@@ -192,43 +189,39 @@ approach</p></td>
 <span class='va'>startsel</span> <span class='op'>&lt;-</span> <span class='fu'><a href='init_population.html'>init_population</a></span><span class='op'>(</span><span class='va'>Grid</span>,<span class='fl'>10</span>,<span class='fl'>20</span><span class='op'>)</span>;
 <span class='va'>wind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/raster/man/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span>ws<span class='op'>=</span><span class='fl'>12</span>,wd<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>wind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>wind</span>, probab <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-<span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='fitness.html'>fitness</a></span><span class='op'>(</span>selection <span class='op'>=</span> <span class='va'>startsel</span>,referenceHeight <span class='op'>=</span> <span class='fl'>100</span>, RotorHeight<span class='op'>=</span><span class='fl'>100</span>,
-              SurfaceRoughness<span class='op'>=</span><span class='fl'>0.3</span>,Polygon <span class='op'>=</span> <span class='va'>Polygon1</span>, resol1 <span class='op'>=</span> <span class='fl'>200</span>,rot<span class='op'>=</span><span class='fl'>20</span>, dirspeed <span class='op'>=</span> <span class='va'>wind</span>,
-              srtm_crop<span class='op'>=</span><span class='st'>""</span>,topograp<span class='op'>=</span><span class='cn'>FALSE</span>,cclRaster<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
-<span class='va'>allparks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='st'>"rbind"</span>,<span class='va'>fit</span><span class='op'>)</span>;
-
+<span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='fitness.html'>fitness</a></span><span class='op'>(</span>selection <span class='op'>=</span> <span class='va'>startsel</span>, referenceHeight <span class='op'>=</span> <span class='fl'>100</span>, RotorHeight <span class='op'>=</span> <span class='fl'>100</span>,
+              SurfaceRoughness<span class='op'>=</span><span class='fl'>0.3</span>, Polygon <span class='op'>=</span> <span class='va'>Polygon1</span>, resol1 <span class='op'>=</span> <span class='fl'>200</span>, rot <span class='op'>=</span> <span class='fl'>20</span>, 
+              dirspeed <span class='op'>=</span> <span class='va'>wind</span>, srtm_crop<span class='op'>=</span><span class='st'>""</span>, topograp<span class='op'>=</span><span class='cn'>FALSE</span>, cclRaster<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in subset.matrix(res, subset = res[, "alpha"] &lt; wnkl &amp; res[, "Laenge_B"] &lt;     distanz): object 'distanz' not found</span></div><div class='input'><span class='va'>allparks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='st'>"rbind"</span>, <span class='va'>fit</span><span class='op'>)</span>;
+</div><div class='output co'>#&gt; <span class='error'>Error in do.call("rbind", fit): object 'fit' not found</span></div><div class='input'>
 <span class='co'>## SELECTION</span>
 <span class='co'>## print the amount of Individuals selected.</span>
 <span class='co'>## Check if the amount of Turbines is as requested.</span>
 <span class='va'>selec6best</span> <span class='op'>&lt;-</span> <span class='fu'><a href='selection.html'>selection</a></span><span class='op'>(</span><span class='va'>fit</span>, <span class='va'>Grid</span>,<span class='fl'>2</span>, <span class='cn'>TRUE</span>, <span class='fl'>6</span>, <span class='st'>"VAR"</span><span class='op'>)</span>;
-<span class='va'>selec6best</span> <span class='op'>&lt;-</span> <span class='fu'><a href='selection.html'>selection</a></span><span class='op'>(</span><span class='va'>fit</span>, <span class='va'>Grid</span>,<span class='fl'>2</span>, <span class='cn'>TRUE</span>, <span class='fl'>6</span>, <span class='st'>"FIX"</span><span class='op'>)</span>;
-<span class='va'>selec6best</span> <span class='op'>&lt;-</span> <span class='fu'><a href='selection.html'>selection</a></span><span class='op'>(</span><span class='va'>fit</span>, <span class='va'>Grid</span>,<span class='fl'>4</span>, <span class='cn'>FALSE</span>, <span class='fl'>6</span>, <span class='st'>"FIX"</span><span class='op'>)</span>;
-
+</div><div class='output co'>#&gt; <span class='error'>Error in do.call("rbind", fit): object 'fit' not found</span></div><div class='input'><span class='va'>selec6best</span> <span class='op'>&lt;-</span> <span class='fu'><a href='selection.html'>selection</a></span><span class='op'>(</span><span class='va'>fit</span>, <span class='va'>Grid</span>,<span class='fl'>2</span>, <span class='cn'>TRUE</span>, <span class='fl'>6</span>, <span class='st'>"FIX"</span><span class='op'>)</span>;
+</div><div class='output co'>#&gt; <span class='error'>Error in do.call("rbind", fit): object 'fit' not found</span></div><div class='input'><span class='va'>selec6best</span> <span class='op'>&lt;-</span> <span class='fu'><a href='selection.html'>selection</a></span><span class='op'>(</span><span class='va'>fit</span>, <span class='va'>Grid</span>,<span class='fl'>4</span>, <span class='cn'>FALSE</span>, <span class='fl'>6</span>, <span class='st'>"FIX"</span><span class='op'>)</span>;
+</div><div class='output co'>#&gt; <span class='error'>Error in do.call("rbind", fit): object 'fit' not found</span></div><div class='input'>
 <span class='co'>## CROSSOVER</span>
 <span class='co'>## u determines the amount of crossover points,</span>
 <span class='co'>## crossPart determines the method used (Equal/Random),</span>
 <span class='co'>## uplimit is the maximum allowed permutations</span>
 <span class='va'>crossOut</span> <span class='op'>&lt;-</span> <span class='fu'><a href='crossover.html'>crossover</a></span><span class='op'>(</span><span class='va'>selec6best</span>, <span class='fl'>2</span>, uplimit <span class='op'>=</span> <span class='fl'>300</span>, crossPart<span class='op'>=</span><span class='st'>"RAN"</span><span class='op'>)</span>;
-<span class='va'>crossOut</span> <span class='op'>&lt;-</span> <span class='fu'><a href='crossover.html'>crossover</a></span><span class='op'>(</span><span class='va'>selec6best</span>, <span class='fl'>7</span>, uplimit <span class='op'>=</span> <span class='fl'>500</span>, crossPart<span class='op'>=</span><span class='st'>"RAN"</span><span class='op'>)</span>;
-<span class='va'>crossOut</span> <span class='op'>&lt;-</span> <span class='fu'><a href='crossover.html'>crossover</a></span><span class='op'>(</span><span class='va'>selec6best</span>, <span class='fl'>3</span>, uplimit <span class='op'>=</span> <span class='fl'>300</span>, crossPart<span class='op'>=</span><span class='st'>"EQU"</span><span class='op'>)</span>;
-
+</div><div class='output co'>#&gt; <span class='error'>Error in crossover(selec6best, 2, uplimit = 300, crossPart = "RAN"): object 'selec6best' not found</span></div><div class='input'><span class='va'>crossOut</span> <span class='op'>&lt;-</span> <span class='fu'><a href='crossover.html'>crossover</a></span><span class='op'>(</span><span class='va'>selec6best</span>, <span class='fl'>7</span>, uplimit <span class='op'>=</span> <span class='fl'>500</span>, crossPart<span class='op'>=</span><span class='st'>"RAN"</span><span class='op'>)</span>;
+</div><div class='output co'>#&gt; <span class='error'>Error in crossover(selec6best, 7, uplimit = 500, crossPart = "RAN"): object 'selec6best' not found</span></div><div class='input'><span class='va'>crossOut</span> <span class='op'>&lt;-</span> <span class='fu'><a href='crossover.html'>crossover</a></span><span class='op'>(</span><span class='va'>selec6best</span>, <span class='fl'>3</span>, uplimit <span class='op'>=</span> <span class='fl'>300</span>, crossPart<span class='op'>=</span><span class='st'>"EQU"</span><span class='op'>)</span>;
+</div><div class='output co'>#&gt; <span class='error'>Error in crossover(selec6best, 3, uplimit = 300, crossPart = "EQU"): object 'selec6best' not found</span></div><div class='input'>
 <span class='co'>## MUTATION</span>
 <span class='co'>## Variable Mutation Rate is activated if more than 2 individuals represent</span>
 <span class='co'>## the current best solution.</span>
 <span class='va'>mut</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mutation.html'>mutation</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='va'>crossOut</span>, p <span class='op'>=</span> <span class='fl'>0.3</span>, <span class='cn'>NULL</span><span class='op'>)</span>;
-
+</div><div class='output co'>#&gt; <span class='error'>Error in runif(n = length(a), min = 0, max = 1): object 'crossOut' not found</span></div><div class='input'>
 <span class='co'>## TRIMTON</span>
 <span class='co'>## After Crossover and Mutation, the amount of turbines in a windpark change and have to be</span>
 <span class='co'>## corrected to the required amount of turbines.</span>
 <span class='va'>mut1</span> <span class='op'>&lt;-</span> <span class='fu'>trimton</span><span class='op'>(</span>mut <span class='op'>=</span> <span class='va'>mut</span>, nturb <span class='op'>=</span> <span class='fl'>10</span>, allparks <span class='op'>=</span> <span class='va'>allparks</span>, nGrids <span class='op'>=</span> <span class='va'>AmountGrids</span>,
-                trimForce<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/raster/man/rowSums.html'>colSums</a></span><span class='op'>(</span><span class='va'>mut</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 32 30 31 34 34 34 29 39 32 31 29 35 38 39 33 37 30 29 33 35 40 36 38 29 31
-#&gt; [26] 35 32 36 33 31 38 30 36 39 38 39 31 50 33 30 30 32 30 37 33 33 38 30 32 37
-#&gt; [51] 31 45 37 30 32 29 46 33 33 29 34 37 26 36</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/raster/man/rowSums.html'>colSums</a></span><span class='op'>(</span><span class='va'>mut1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
-#&gt; [26] 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10
-#&gt; [51] 10 10 10 10 10 10 10 10 10 10 10 10 10 10</div><div class='input'>
+                trimForce <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in ncol(x): object 'allparks' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/raster/man/rowSums.html'>colSums</a></span><span class='op'>(</span><span class='va'>mut</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(x): object 'mut' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/raster/man/rowSums.html'>colSums</a></span><span class='op'>(</span><span class='va'>mut1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(x): object 'mut1' not found</span></div><div class='input'>
 <span class='co'># }</span>
 </div></pre>
   </div>
