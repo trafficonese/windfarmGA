@@ -48,6 +48,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -59,9 +61,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">windfarmGA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.1</span>
       </span>
     </div>
 
@@ -120,7 +128,7 @@
   direction.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>genetic_algorithm</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>genetic_algorithm</span><span class='op'>(</span>
   <span class='va'>Polygon1</span>,
   <span class='va'>GridMethod</span>,
   <span class='va'>Rotor</span>,
@@ -148,7 +156,7 @@
   <span class='va'>numCluster</span>,
   verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
   plotit <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -337,42 +345,62 @@ Default is <code>FALSE</code></p></td>
 <code><a href='windfarmGA.html'>windfarmGA</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'>## Create a random rectangular shapefile</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-
-<span class='va'>Polygon1</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/sfc.html'>st_sfc</a></span><span class='op'>(</span>
-  <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st.html'>st_polygon</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4498482</span>, <span class='fl'>4498482</span>, <span class='fl'>4499991</span>, <span class='fl'>4499991</span>, <span class='fl'>4498482</span><span class='op'>)</span>,
-    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2668272</span>, <span class='fl'>2669343</span>, <span class='fl'>2669343</span>, <span class='fl'>2668272</span>, <span class='fl'>2668272</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, 
-  crs <span class='op'>=</span> <span class='fl'>3035</span>
-<span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'>## Create a uniform and unidirectional wind data.frame and plot the</span>
-<span class='co'>## resulting wind rose</span>
-<span class='va'>data.in</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>ws <span class='op'>=</span> <span class='fl'>12</span>, wd <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
-<span class='va'>windrosePlot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='plot_windrose.html'>plot_windrose</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data.in</span>, spd <span class='op'>=</span> <span class='va'>data.in</span><span class='op'>$</span><span class='va'>ws</span>,
-                dir <span class='op'>=</span> <span class='va'>data.in</span><span class='op'>$</span><span class='va'>wd</span>, dirres<span class='op'>=</span><span class='fl'>10</span>, spdmax<span class='op'>=</span><span class='fl'>20</span><span class='op'>)</span>
-</div><div class='img'><img src='genetic_algorithm-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'>## Runs an optimization run for 20 iterations with the</span>
-<span class='co'>## given shapefile (Polygon1), the wind data.frame (data.in),</span>
-<span class='co'>## 12 turbines (n) with rotor radii of 30m (Rotor) and rotor height of 100m.</span>
-<span class='va'>result</span> <span class='op'>&lt;-</span> <span class='fu'>genetic_algorithm</span><span class='op'>(</span>Polygon1 <span class='op'>=</span> <span class='va'>Polygon1</span>,
-                  n <span class='op'>=</span> <span class='fl'>12</span>,
-                  vdirspe <span class='op'>=</span> <span class='va'>data.in</span>,
-                  Rotor <span class='op'>=</span> <span class='fl'>30</span>,
-                  RotorHeight <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; ....................</div><div class='input'><span class='fu'><a href='plot_windfarmGA.html'>plot_windfarmGA</a></span><span class='op'>(</span>result <span class='op'>=</span> <span class='va'>result</span>, Polygon1 <span class='op'>=</span> <span class='va'>Polygon1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "plot_result: Plot the 'best' Individuals of the GA:"
-#&gt; N different optimal configurations: 9 
-#&gt; Amount duplicates: 11
-#&gt; Plot  1  Best  Energy  Solution:</div><div class='img'><img src='genetic_algorithm-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Press [enter] to continue
-#&gt; [1] "plot_evolution: Plot the Evolution of the Efficiency and Energy Values:"</div><div class='img'><img src='genetic_algorithm-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='genetic_algorithm-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; [1] "plot_parkfitness: Plot the Influence of Population Size, Selection, Crossover, Mutation:"</div><div class='img'><img src='genetic_algorithm-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='genetic_algorithm-6.png' alt='' width='700' height='433' /></div><div class='img'><img src='genetic_algorithm-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='genetic_algorithm-8.png' alt='' width='700' height='433' /></div><div class='img'><img src='genetic_algorithm-9.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Press [enter] to continue
-#&gt; [1] "plot_fitness_evolution: Plot the Changes in Fitness Values:"</div><div class='img'><img src='genetic_algorithm-10.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Press [enter] to continue
-#&gt; [1] "plot_cloud: Plot all individual Values of the whole Evolution:"</div><div class='img'><img src='genetic_algorithm-11.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Press [enter] to continue
-#&gt; [1] "plot_heatmap: Plot a Heatmap of all Grid Cells:"
-#&gt; [inverse distance weighted interpolation]</div><div class='img'><img src='genetic_algorithm-12.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='co'>## Create a random rectangular shapefile</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>Polygon1</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_as_sf.html'>st_as_sf</a></span><span class='op'>(</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/sfc.html'>st_sfc</a></span><span class='op'>(</span></span>
+<span class='r-in'>  <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st.html'>st_polygon</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span></span>
+<span class='r-in'>    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4498482</span>, <span class='fl'>4498482</span>, <span class='fl'>4499991</span>, <span class='fl'>4499991</span>, <span class='fl'>4498482</span><span class='op'>)</span>,</span>
+<span class='r-in'>    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2668272</span>, <span class='fl'>2669343</span>, <span class='fl'>2669343</span>, <span class='fl'>2668272</span>, <span class='fl'>2668272</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, </span>
+<span class='r-in'>  crs <span class='op'>=</span> <span class='fl'>3035</span></span>
+<span class='r-in'><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Create a uniform and unidirectional wind data.frame and plot the</span></span>
+<span class='r-in'><span class='co'>## resulting wind rose</span></span>
+<span class='r-in'><span class='va'>data.in</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>ws <span class='op'>=</span> <span class='fl'>12</span>, wd <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>windrosePlot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='plot_windrose.html'>plot_windrose</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data.in</span>, spd <span class='op'>=</span> <span class='va'>data.in</span><span class='op'>$</span><span class='va'>ws</span>,</span>
+<span class='r-in'>                dir <span class='op'>=</span> <span class='va'>data.in</span><span class='op'>$</span><span class='va'>wd</span>, dirres<span class='op'>=</span><span class='fl'>10</span>, spdmax<span class='op'>=</span><span class='fl'>20</span><span class='op'>)</span></span>
+<span class='r-plt'><img src='genetic_algorithm-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Runs an optimization run for 20 iterations with the</span></span>
+<span class='r-in'><span class='co'>## given shapefile (Polygon1), the wind data.frame (data.in),</span></span>
+<span class='r-in'><span class='co'>## 12 turbines (n) with rotor radii of 30m (Rotor) and rotor height of 100m.</span></span>
+<span class='r-in'><span class='va'>result</span> <span class='op'>&lt;-</span> <span class='fu'>genetic_algorithm</span><span class='op'>(</span>Polygon1 <span class='op'>=</span> <span class='va'>Polygon1</span>,</span>
+<span class='r-in'>                  n <span class='op'>=</span> <span class='fl'>12</span>,</span>
+<span class='r-in'>                  vdirspe <span class='op'>=</span> <span class='va'>data.in</span>,</span>
+<span class='r-in'>                  Rotor <span class='op'>=</span> <span class='fl'>30</span>,</span>
+<span class='r-in'>                  RotorHeight <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> ....................</span>
+<span class='r-in'><span class='fu'><a href='plot_windfarmGA.html'>plot_windfarmGA</a></span><span class='op'>(</span>result <span class='op'>=</span> <span class='va'>result</span>, Polygon1 <span class='op'>=</span> <span class='va'>Polygon1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "plot_result: Plot the 'best' Individuals of the GA:"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> N different optimal configurations: 9 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Amount duplicates: 11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Plot  1  Best  Energy  Solution:</span>
+<span class='r-plt'><img src='genetic_algorithm-2.png' alt='' width='700' height='433' /></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Press [enter] to continue</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "plot_evolution: Plot the Evolution of the Efficiency and Energy Values:"</span>
+<span class='r-plt'><img src='genetic_algorithm-3.png' alt='' width='700' height='433' /></span>
+<span class='r-plt'><img src='genetic_algorithm-4.png' alt='' width='700' height='433' /></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "plot_parkfitness: Plot the Influence of Population Size, Selection, Crossover, Mutation:"</span>
+<span class='r-plt'><img src='genetic_algorithm-5.png' alt='' width='700' height='433' /></span>
+<span class='r-plt'><img src='genetic_algorithm-6.png' alt='' width='700' height='433' /></span>
+<span class='r-plt'><img src='genetic_algorithm-7.png' alt='' width='700' height='433' /></span>
+<span class='r-plt'><img src='genetic_algorithm-8.png' alt='' width='700' height='433' /></span>
+<span class='r-plt'><img src='genetic_algorithm-9.png' alt='' width='700' height='433' /></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Press [enter] to continue</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "plot_fitness_evolution: Plot the Changes in Fitness Values:"</span>
+<span class='r-plt'><img src='genetic_algorithm-10.png' alt='' width='700' height='433' /></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Press [enter] to continue</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "plot_cloud: Plot all individual Values of the whole Evolution:"</span>
+<span class='r-plt'><img src='genetic_algorithm-11.png' alt='' width='700' height='433' /></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Press [enter] to continue</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "plot_heatmap: Plot a Heatmap of all Grid Cells:"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [inverse distance weighted interpolation]</span>
+<span class='r-plt'><img src='genetic_algorithm-12.png' alt='' width='700' height='433' /></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
+<span class='r-in'><span class='co'># }</span></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -384,11 +412,11 @@ Default is <code>FALSE</code></p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sebastian Gatscha.</p>
+  <p><p>Developed by Sebastian Gatscha.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -396,6 +424,8 @@ Default is <code>FALSE</code></p></td>
 
   
 
+
+  
 
   </body>
 </html>
