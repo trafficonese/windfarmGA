@@ -49,8 +49,6 @@ to the Barometric Height Formula — barometric_height" />
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -62,15 +60,9 @@ to the Barometric Height Formula — barometric_height" />
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -91,6 +83,12 @@ to the Barometric Height Formula — barometric_height" />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -129,7 +127,7 @@ to the Barometric Height Formula</h1>
     standard atmosphere and the barometric height formula.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>barometric_height</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>height</span>, po <span class='op'>=</span> <span class='fl'>101325</span>, ro <span class='op'>=</span> <span class='fl'>1.225</span><span class='op'>)</span></code></pre></div>
+    <pre class="usage"><span class='fu'>barometric_height</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>height</span>, po <span class='op'>=</span> <span class='fl'>101325</span>, ro <span class='op'>=</span> <span class='fl'>1.225</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,23 +162,21 @@ air pressures, air densities and temperatures in Kelvin and Celsius.</p>
 <code><a href='turbine_influences.html'>turbine_influences</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>5000</span>,<span class='fl'>500</span><span class='op'>)</span><span class='op'>)</span>;</span>
-<span class='r-in'><span class='fu'>barometric_height</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    Height        ph        rh  tempK  tempC</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 1       0 101325.00 1.2250000 288.15  15.00</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 2     500  95176.51 1.1506659 284.90  11.75</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 3    1000  89401.12 1.0808425 281.65   8.50</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 4    1500  83976.18 1.0152560 278.40   5.25</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 5    2000  78880.43 0.9536494 275.15   2.00</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 6    2500  74093.90 0.8957811 271.90  -1.25</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 7    3000  69597.81 0.8414244 268.65  -4.50</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 8    3500  65374.56 0.7903660 265.40  -7.75</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 9    4000  61407.57 0.7424059 262.15 -11.00</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 10   4500  57681.31 0.6973561 258.90 -14.25</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 11   5000  54181.16 0.6550399 255.65 -17.50</span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/stats/plot.ts.html'>plot.ts</a></span><span class='op'>(</span><span class='fu'>barometric_height</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-plt'><img src='barometric_height-1.png' alt='' width='700' height='433' /></span>
-</code></pre></div>
+    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>5000</span>,<span class='fl'>500</span><span class='op'>)</span><span class='op'>)</span>;
+<span class='fu'>barometric_height</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    Height        ph        rh  tempK  tempC
+#&gt; 1       0 101325.00 1.2250000 288.15  15.00
+#&gt; 2     500  95176.51 1.1506659 284.90  11.75
+#&gt; 3    1000  89401.12 1.0808425 281.65   8.50
+#&gt; 4    1500  83976.18 1.0152560 278.40   5.25
+#&gt; 5    2000  78880.43 0.9536494 275.15   2.00
+#&gt; 6    2500  74093.90 0.8957811 271.90  -1.25
+#&gt; 7    3000  69597.81 0.8414244 268.65  -4.50
+#&gt; 8    3500  65374.56 0.7903660 265.40  -7.75
+#&gt; 9    4000  61407.57 0.7424059 262.15 -11.00
+#&gt; 10   4500  57681.31 0.6973561 258.90 -14.25
+#&gt; 11   5000  54181.16 0.6550399 255.65 -17.50</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/plot.ts.html'>plot.ts</a></span><span class='op'>(</span><span class='fu'>barometric_height</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='barometric_height-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -192,11 +188,11 @@ air pressures, air densities and temperatures in Kelvin and Celsius.</p>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by Sebastian Gatscha.</p></p>
+  <p>Developed by Sebastian Gatscha.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -204,8 +200,6 @@ air pressures, air densities and temperatures in Kelvin and Celsius.</p>
 
   
 
-
-  
 
   </body>
 </html>
