@@ -53,36 +53,49 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getISO3</span><span class="op">(</span>
-  <span class="va">pp</span>,
-  crs_pp <span class="op">=</span> <span class="fl">4326</span>,
-  col <span class="op">=</span> <span class="st">"ISO3"</span>,
-  resol <span class="op">=</span> <span class="st">"low"</span>,
-  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LONG"</span>, <span class="st">"LAT"</span><span class="op">)</span>,
-  ask <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getISO3</span><span class="op">(</span></span>
+<span>  <span class="va">pp</span>,</span>
+<span>  crs_pp <span class="op">=</span> <span class="fl">4326</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"ISO3"</span>,</span>
+<span>  resol <span class="op">=</span> <span class="st">"low"</span>,</span>
+<span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LONG"</span>, <span class="st">"LAT"</span><span class="op">)</span>,</span>
+<span>  ask <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>pp</dt>
 <dd><p>Simple Feature Points or coordinate matrix/data.frame</p></dd>
+
+
 <dt>crs_pp</dt>
 <dd><p>The CRS of the points</p></dd>
+
+
 <dt>col</dt>
 <dd><p>Which column/s should be returned</p></dd>
+
+
 <dt>resol</dt>
 <dd><p>The search resolution. The options are "coarse","low",
 "less islands","li","high". For "high" you need to install the 
 package <code>rworldxtra</code></p></dd>
+
+
 <dt>coords</dt>
 <dd><p>The column names of the point matrix</p></dd>
+
+
 <dt>ask</dt>
 <dd><p>A boolean, to ask which columns can be returned</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A character vector</p>
+    
+
+<p>A character vector</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -102,18 +115,18 @@ package <code>rworldxtra</code></p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">points</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4488182.26267016</span>, <span class="fl">4488852.91748256</span><span class="op">)</span>, </span>
-<span class="r-in">               <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2667398.93118627</span>, <span class="fl">2667398.93118627</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">getISO3</span><span class="op">(</span>pp <span class="op">=</span> <span class="va">points</span>, ask <span class="op">=</span> <span class="cn">TRUE</span>, crs_pp <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">points</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">3035</span></span>
-<span class="r-in"><span class="fu">getISO3</span><span class="op">(</span>pp <span class="op">=</span> <span class="va">points</span>, crs_pp <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">points</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4488182.26267016</span>, <span class="fl">4488852.91748256</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>               <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2667398.93118627</span>, <span class="fl">2667398.93118627</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">getISO3</span><span class="op">(</span>pp <span class="op">=</span> <span class="va">points</span>, ask <span class="op">=</span> <span class="cn">TRUE</span>, crs_pp <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">points</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>,<span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">st_crs</a></span><span class="op">(</span><span class="va">points</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">3035</span></span></span>
+<span class="r-in"><span><span class="fu">getISO3</span><span class="op">(</span>pp <span class="op">=</span> <span class="va">points</span>, crs_pp <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -128,7 +141,7 @@ package <code>rworldxtra</code></p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

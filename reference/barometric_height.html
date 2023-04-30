@@ -60,23 +60,32 @@ to the Barometric Height Formula</h1>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">barometric_height</span><span class="op">(</span><span class="va">data</span>, <span class="va">height</span>, po <span class="op">=</span> <span class="fl">101325</span>, ro <span class="op">=</span> <span class="fl">1.225</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">barometric_height</span><span class="op">(</span><span class="va">data</span>, <span class="va">height</span>, po <span class="op">=</span> <span class="fl">101325</span>, ro <span class="op">=</span> <span class="fl">1.225</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>A data.frame containing the height values</p></dd>
+
+
 <dt>height</dt>
 <dd><p>Column name of the height values</p></dd>
+
+
 <dt>po</dt>
 <dd><p>Standardized air pressure at sea level (101325 Pa)</p></dd>
+
+
 <dt>ro</dt>
 <dd><p>Standardized air density at sea level (1,225 kg per m3)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a data.frame with height values and corresponding
+    
+
+<p>Returns a data.frame with height values and corresponding
 air pressures, air densities and temperatures in Kelvin and Celsius.</p>
     </div>
     <div id="see-also">
@@ -89,8 +98,8 @@ air pressures, air densities and temperatures in Kelvin and Celsius.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5000</span>,<span class="fl">500</span><span class="op">)</span><span class="op">)</span>;</span>
-<span class="r-in"><span class="fu">barometric_height</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5000</span>,<span class="fl">500</span><span class="op">)</span><span class="op">)</span>;</span></span>
+<span class="r-in"><span><span class="fu">barometric_height</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Height        ph        rh  tempK  tempC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       0 101325.00 1.2250000 288.15  15.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     500  95176.51 1.1506659 284.90  11.75</span>
@@ -103,7 +112,7 @@ air pressures, air densities and temperatures in Kelvin and Celsius.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9    4000  61407.57 0.7424059 262.15 -11.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10   4500  57681.31 0.6973561 258.90 -14.25</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11   5000  54181.16 0.6550399 255.65 -17.50</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/plot.ts.html" class="external-link">plot.ts</a></span><span class="op">(</span><span class="fu">barometric_height</span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/plot.ts.html" class="external-link">plot.ts</a></span><span class="op">(</span><span class="fu">barometric_height</span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="barometric_height-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -119,7 +128,7 @@ air pressures, air densities and temperatures in Kelvin and Celsius.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

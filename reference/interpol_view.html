@@ -53,42 +53,59 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">interpol_view</span><span class="op">(</span>
-  <span class="va">res</span>,
-  plot <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">breakseq</span>,
-  breakform <span class="op">=</span> <span class="cn">NULL</span>,
-  plotDEM <span class="op">=</span> <span class="cn">FALSE</span>,
-  fun <span class="op">=</span> <span class="va">mean</span>,
-  pal <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">interpol_view</span><span class="op">(</span></span>
+<span>  <span class="va">res</span>,</span>
+<span>  plot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">breakseq</span>,</span>
+<span>  breakform <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  plotDEM <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  fun <span class="op">=</span> <span class="va">mean</span>,</span>
+<span>  pal <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>res</dt>
 <dd><p>The resulting list from <code><a href="viewshed.html">viewshed</a></code></p></dd>
+
+
 <dt>plot</dt>
 <dd><p>Should the result be plotted? Default is <code>TRUE</code></p></dd>
+
+
 <dt>breakseq</dt>
 <dd><p>The breaks for value plotting. By default, 5 equal intervals
 are generated.</p></dd>
+
+
 <dt>breakform</dt>
 <dd><p>If <code>breakseq</code> is missing, a sampling function to calculate
-the breaks, like <code><a href="https://rdrr.io/pkg/raster/man/quantile.html" class="external-link">quantile</a></code>, fivenum, etc.</p></dd>
+the breaks, like <code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></code>, fivenum, etc.</p></dd>
+
+
 <dt>plotDEM</dt>
 <dd><p>Plot the DEM? Default is <code>FALSE</code></p></dd>
+
+
 <dt>fun</dt>
 <dd><p>Function used for rasterize. Default is <code>mean</code></p></dd>
+
+
 <dt>pal</dt>
 <dd><p>A color palette</p></dd>
+
+
 <dt>...</dt>
-<dd><p>Arguments passed on to <code><a href="https://rdrr.io/pkg/raster/man/plot.html" class="external-link">plot</a></code>.</p></dd>
+<dd><p>Arguments passed on to <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>An interpolated raster</p>
+    
+
+<p>An interpolated raster</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -114,35 +131,35 @@ the breaks, like <code><a href="https://rdrr.io/pkg/raster/man/quantile.html" cl
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">Polygon1</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4496482</span>, <span class="fl">4496482</span>, <span class="fl">4499991</span>, <span class="fl">4499991</span>, <span class="fl">4496482</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2666272</span>, <span class="fl">2669343</span>, <span class="fl">2669343</span>, <span class="fl">2666272</span>, <span class="fl">2666272</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">  crs <span class="op">=</span> <span class="fl">3035</span></span>
-<span class="r-in"><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">DEM_meter</span> <span class="op">&lt;-</span> <span class="fu"><a href="getDEM.html">getDEM</a></span><span class="op">(</span><span class="va">Polygon1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">turbloc</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html" class="external-link">st_sample</a></span><span class="op">(</span><span class="va">DEM_meter</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="fl">10</span>, type <span class="op">=</span> <span class="st">"random"</span><span class="op">)</span>;</span>
-<span class="r-in"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="viewshed.html">viewshed</a></span><span class="op">(</span>r <span class="op">=</span> <span class="va">DEM_meter</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, shape<span class="op">=</span><span class="va">DEM_meter</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, </span>
-<span class="r-in">                turbine_locs <span class="op">=</span> <span class="va">turbloc</span>,  h1<span class="op">=</span><span class="fl">1.8</span>, h2<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, breakseq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/rowSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">Result</span><span class="op">)</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">FALSE</span>, breakform <span class="op">=</span> <span class="va">quantile</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, breakform <span class="op">=</span> <span class="va">factor</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Different color palettes</span></span>
-<span class="r-in"><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">TRUE</span>, pal<span class="op">=</span><span class="va">topo.colors</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">TRUE</span>, pal<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>,<span class="st">"purple"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## ... Arguments are past on to the raster plot method</span></span>
-<span class="r-in"><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">TRUE</span>, alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">FALSE</span>, breakseq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">10</span>,<span class="fl">1</span><span class="op">)</span>, colNA<span class="op">=</span><span class="st">"black"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">Polygon1</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4496482</span>, <span class="fl">4496482</span>, <span class="fl">4499991</span>, <span class="fl">4499991</span>, <span class="fl">4496482</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2666272</span>, <span class="fl">2669343</span>, <span class="fl">2669343</span>, <span class="fl">2666272</span>, <span class="fl">2666272</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  crs <span class="op">=</span> <span class="fl">3035</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">DEM_meter</span> <span class="op">&lt;-</span> <span class="fu"><a href="getDEM.html">getDEM</a></span><span class="op">(</span><span class="va">Polygon1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">turbloc</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html" class="external-link">st_sample</a></span><span class="op">(</span><span class="va">DEM_meter</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="fl">10</span>, type <span class="op">=</span> <span class="st">"random"</span><span class="op">)</span>;</span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="viewshed.html">viewshed</a></span><span class="op">(</span>r <span class="op">=</span> <span class="va">DEM_meter</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, shape<span class="op">=</span><span class="va">DEM_meter</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>                turbine_locs <span class="op">=</span> <span class="va">turbloc</span>,  h1<span class="op">=</span><span class="fl">1.8</span>, h2<span class="op">=</span><span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, breakseq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/rowSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">Result</span><span class="op">)</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">FALSE</span>, breakform <span class="op">=</span> <span class="va">quantile</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, breakform <span class="op">=</span> <span class="va">factor</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Different color palettes</span></span></span>
+<span class="r-in"><span><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">TRUE</span>, pal<span class="op">=</span><span class="va">topo.colors</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">TRUE</span>, pal<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>,<span class="st">"purple"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## ... Arguments are past on to the raster plot method</span></span></span>
+<span class="r-in"><span><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">TRUE</span>, alpha<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">interpol_view</span><span class="op">(</span><span class="va">res</span>, plotDEM <span class="op">=</span> <span class="cn">FALSE</span>, breakseq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">10</span>,<span class="fl">1</span><span class="op">)</span>, colNA<span class="op">=</span><span class="st">"black"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -157,7 +174,7 @@ the breaks, like <code><a href="https://rdrr.io/pkg/raster/man/quantile.html" cl
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

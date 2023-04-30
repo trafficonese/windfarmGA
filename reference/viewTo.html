@@ -53,33 +53,52 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">viewTo</span><span class="op">(</span><span class="va">r</span>, <span class="va">xy1</span>, <span class="va">xy2</span>, h1 <span class="op">=</span> <span class="fl">0</span>, h2 <span class="op">=</span> <span class="fl">0</span>, <span class="va">reso</span>, plot <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">viewTo</span><span class="op">(</span><span class="va">r</span>, <span class="va">xy1</span>, <span class="va">xy2</span>, h1 <span class="op">=</span> <span class="fl">0</span>, h2 <span class="op">=</span> <span class="fl">0</span>, <span class="va">reso</span>, plot <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>r</dt>
 <dd><p>A DEM raster</p></dd>
+
+
 <dt>xy1</dt>
 <dd><p>A vector/matrix with X and Y coordinates for Point 1</p></dd>
+
+
 <dt>xy2</dt>
 <dd><p>A vector/matrix with X and Y coordinates for Point 2</p></dd>
+
+
 <dt>h1</dt>
 <dd><p>A numeric giving the extra height offset for Point 1</p></dd>
+
+
 <dt>h2</dt>
 <dd><p>A numeric giving the extra height offset for Point 2</p></dd>
+
+
 <dt>reso</dt>
 <dd><p>The minimal resolution of the DEM raster. It is 
 calculated in <code>viewshed</code> and passed along.</p></dd>
+
+
 <dt>plot</dt>
 <dd><p>Plot the process? Default is <code>FALSE</code></p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments passed to the raster plot</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A boolean vector, indicating if <code>xy1</code> is visible from all
+    
+
+<p>A boolean vector, indicating if <code>xy1</code> is visible from all
   elements of <code>xy2</code></p>
+
+
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -93,21 +112,21 @@ calculated in <code>viewshed</code> and passed along.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>, nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">r1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html" class="external-link">raster</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/coerce-methods.html" class="external-link">as</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/extent.html" class="external-link">extent</a></span><span class="op">(</span><span class="va">r1</span><span class="op">)</span>, <span class="st">"SpatialPolygons"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">locs</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html" class="external-link">st_sample</a></span><span class="op">(</span><span class="va">shape</span>, <span class="fl">10</span>, type <span class="op">=</span> <span class="st">"random"</span><span class="op">)</span>;</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">mw</span> <span class="op">&lt;-</span> <span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">r1</span>, <span class="st">"SpatialPixelsDataFrame"</span><span class="op">)</span>, <span class="st">"SpatialPolygons"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">sample_xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html" class="external-link">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html" class="external-link">st_centroid</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">mw</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">viewTo</span><span class="op">(</span><span class="va">r1</span>, <span class="va">sample_xy</span><span class="op">[</span><span class="fl">4</span>,<span class="op">]</span>, <span class="va">sample_xy</span>, h1<span class="op">=</span><span class="fl">1.8</span>, h2<span class="op">=</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/resolution.html" class="external-link">res</a></span><span class="op">(</span><span class="va">r1</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">       plot<span class="op">=</span><span class="cn">TRUE</span>, interpolate<span class="op">=</span><span class="cn">TRUE</span>, asp<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/raster" class="external-link">raster</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>, nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">r1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/raster.html" class="external-link">raster</a></span><span class="op">(</span><span class="va">matrix</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/raster/man/extent.html" class="external-link">extent</a></span><span class="op">(</span><span class="va">r1</span><span class="op">)</span>, <span class="st">"SpatialPolygons"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">locs</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html" class="external-link">st_sample</a></span><span class="op">(</span><span class="va">shape</span>, <span class="fl">10</span>, type <span class="op">=</span> <span class="st">"random"</span><span class="op">)</span>;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mw</span> <span class="op">&lt;-</span> <span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/as.html" class="external-link">as</a></span><span class="op">(</span><span class="va">r1</span>, <span class="st">"SpatialPixelsDataFrame"</span><span class="op">)</span>, <span class="st">"SpatialPolygons"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sample_xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html" class="external-link">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html" class="external-link">st_centroid</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">mw</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">viewTo</span><span class="op">(</span><span class="va">r1</span>, <span class="va">sample_xy</span><span class="op">[</span><span class="fl">4</span>,<span class="op">]</span>, <span class="va">sample_xy</span>, h1<span class="op">=</span><span class="fl">1.8</span>, h2<span class="op">=</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fu">raster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/dimensions.html" class="external-link">res</a></span><span class="op">(</span><span class="va">r1</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       plot<span class="op">=</span><span class="cn">TRUE</span>, interpolate<span class="op">=</span><span class="cn">TRUE</span>, asp<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -122,7 +141,7 @@ calculated in <code>viewshed</code> and passed along.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

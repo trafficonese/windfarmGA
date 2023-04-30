@@ -53,42 +53,61 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot_windrose</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">spd</span>,
-  <span class="va">dir</span>,
-  spdres <span class="op">=</span> <span class="fl">2</span>,
-  dirres <span class="op">=</span> <span class="fl">10</span>,
-  spdmin <span class="op">=</span> <span class="fl">1</span>,
-  spdmax <span class="op">=</span> <span class="fl">30</span>,
-  palette <span class="op">=</span> <span class="st">"YlGnBu"</span>,
-  spdseq <span class="op">=</span> <span class="cn">NULL</span>,
-  plotit <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_windrose</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">spd</span>,</span>
+<span>  <span class="va">dir</span>,</span>
+<span>  spdres <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  dirres <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  spdmin <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  spdmax <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"YlGnBu"</span>,</span>
+<span>  spdseq <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  plotit <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>A data.frame containing the wind information</p></dd>
+
+
 <dt>spd</dt>
 <dd><p>The column of the wind speeds in "data"</p></dd>
+
+
 <dt>dir</dt>
 <dd><p>The column of the wind directions in "data"</p></dd>
+
+
 <dt>spdres</dt>
 <dd><p>The increment of the wind speed legend. Default is 2</p></dd>
+
+
 <dt>dirres</dt>
 <dd><p>The size of the wind sectors. Default is 10</p></dd>
+
+
 <dt>spdmin</dt>
 <dd><p>Minimum wind speed. Default is 1</p></dd>
+
+
 <dt>spdmax</dt>
 <dd><p>Maximal wind speed. Default is 30</p></dd>
+
+
 <dt>palette</dt>
 <dd><p>A color palette used for drawing the wind rose</p></dd>
+
+
 <dt>spdseq</dt>
 <dd><p>A wind speed sequence, that is used for plotting</p></dd>
+
+
 <dt>plotit</dt>
 <dd><p>Should the windrose be plotted? Default is TRUE</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -108,20 +127,20 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Exemplary Input Wind speed and direction data frame</span></span>
-<span class="r-in"><span class="co"># Uniform wind speed and single wind direction</span></span>
-<span class="r-in"><span class="va">data.in</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ws <span class="op">=</span> <span class="fl">12</span>, wd <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">windrosePlot</span> <span class="op">&lt;-</span> <span class="fu">plot_windrose</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data.in</span>, spd <span class="op">=</span> <span class="va">data.in</span><span class="op">$</span><span class="va">ws</span>,</span>
-<span class="r-in">   dir <span class="op">=</span> <span class="va">data.in</span><span class="op">$</span><span class="va">wd</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Exemplary Input Wind speed and direction data frame</span></span></span>
+<span class="r-in"><span><span class="co"># Uniform wind speed and single wind direction</span></span></span>
+<span class="r-in"><span><span class="va">data.in</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ws <span class="op">=</span> <span class="fl">12</span>, wd <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">windrosePlot</span> <span class="op">&lt;-</span> <span class="fu">plot_windrose</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data.in</span>, spd <span class="op">=</span> <span class="va">data.in</span><span class="op">$</span><span class="va">ws</span>,</span></span>
+<span class="r-in"><span>   dir <span class="op">=</span> <span class="va">data.in</span><span class="op">$</span><span class="va">wd</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_windrose-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Random wind speeds and random wind directions</span></span>
-<span class="r-in"><span class="va">data.in</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ws <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">10</span><span class="op">)</span>, </span>
-<span class="r-in">                      wd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">260</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">windrosePlot</span> <span class="op">&lt;-</span> <span class="fu">plot_windrose</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data.in</span>, spd <span class="op">=</span> <span class="va">data.in</span><span class="op">$</span><span class="va">ws</span>,</span>
-<span class="r-in">   dir <span class="op">=</span> <span class="va">data.in</span><span class="op">$</span><span class="va">wd</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Random wind speeds and random wind directions</span></span></span>
+<span class="r-in"><span><span class="va">data.in</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ws <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">10</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>                      wd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">260</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">windrosePlot</span> <span class="op">&lt;-</span> <span class="fu">plot_windrose</span><span class="op">(</span>data <span class="op">=</span> <span class="va">data.in</span>, spd <span class="op">=</span> <span class="va">data.in</span><span class="op">$</span><span class="va">ws</span>,</span></span>
+<span class="r-in"><span>   dir <span class="op">=</span> <span class="va">data.in</span><span class="op">$</span><span class="va">wd</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_windrose-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -136,7 +155,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

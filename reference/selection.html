@@ -63,33 +63,48 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">selection</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Grid</span>, <span class="va">teil</span>, <span class="va">elitism</span>, <span class="va">nelit</span>, <span class="va">selstate</span>, <span class="va">verbose</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">selection</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Grid</span>, <span class="va">teil</span>, <span class="va">elitism</span>, <span class="va">nelit</span>, <span class="va">selstate</span>, <span class="va">verbose</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>fit</dt>
 <dd><p>A list of all fitness-evaluated individuals</p></dd>
+
+
 <dt>Grid</dt>
 <dd><p>Is the indexed grid output from <code><a href="grid_area.html">grid_area</a></code></p></dd>
+
+
 <dt>teil</dt>
 <dd><p>A numeric value that determines the selection percentage</p></dd>
+
+
 <dt>elitism</dt>
 <dd><p>Boolean value, which indicates whether elitism should be
 activated or not. Default is <code>TRUE</code></p></dd>
+
+
 <dt>nelit</dt>
 <dd><p>If <code>elitism</code> is TRUE, this input determines the amount 
 of individuals in the elite group. Default is 7</p></dd>
+
+
 <dt>selstate</dt>
 <dd><p>Determines which selection method is used, "FIX" selects a
 constant percentage and "VAR" selects a variable percentage, depending on
 the development of the fitness values. Default is "FIX"</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>If TRUE, will print out further information.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns list with 2 elements. Element 1 is the binary encoded matrix
+    
+
+<p>Returns list with 2 elements. Element 1 is the binary encoded matrix
   which shows all selected individuals. Element 2 represent the mean fitness
   values of each parental team.</p>
     </div>
@@ -107,37 +122,37 @@ the development of the fitness values. Default is "FIX"</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co">## Exemplary input Polygon with 2km x 2km:</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">Polygon1</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4498482</span>, <span class="fl">4498482</span>, <span class="fl">4499991</span>, <span class="fl">4499991</span>, <span class="fl">4498482</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2668272</span>, <span class="fl">2669343</span>, <span class="fl">2669343</span>, <span class="fl">2668272</span>, <span class="fl">2668272</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, </span>
-<span class="r-in">  crs <span class="op">=</span> <span class="fl">3035</span></span>
-<span class="r-in"><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Calculate a Grid and an indexed data.frame with coordinates and grid cell Ids.</span></span>
-<span class="r-in"><span class="va">Grid1</span> <span class="op">&lt;-</span> <span class="fu"><a href="grid_area.html">grid_area</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="va">Polygon1</span>, size <span class="op">=</span> <span class="fl">200</span>, prop <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>;</span>
-<span class="r-in"><span class="va">Grid</span> <span class="op">&lt;-</span> <span class="va">Grid1</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">AmountGrids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/ncell.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Grid</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">startsel</span> <span class="op">&lt;-</span> <span class="fu"><a href="init_population.html">init_population</a></span><span class="op">(</span><span class="va">Grid</span>,<span class="fl">10</span>,<span class="fl">20</span><span class="op">)</span>;</span>
-<span class="r-in"><span class="va">wind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/raster/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>ws<span class="op">=</span><span class="fl">12</span>,wd<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">wind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">wind</span>, probab <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="fitness.html">fitness</a></span><span class="op">(</span>selection <span class="op">=</span> <span class="va">startsel</span>, referenceHeight <span class="op">=</span> <span class="fl">100</span>, RotorHeight<span class="op">=</span><span class="fl">100</span>,</span>
-<span class="r-in">               SurfaceRoughness<span class="op">=</span><span class="fl">0.3</span>, Polygon <span class="op">=</span> <span class="va">Polygon1</span>, resol1 <span class="op">=</span> <span class="fl">200</span>,</span>
-<span class="r-in">               rot <span class="op">=</span> <span class="fl">20</span>, dirspeed <span class="op">=</span> <span class="va">wind</span>, </span>
-<span class="r-in">               srtm_crop <span class="op">=</span> <span class="st">""</span>, topograp <span class="op">=</span> <span class="cn">FALSE</span>, cclRaster <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">allparks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"rbind"</span>,<span class="va">fit</span><span class="op">)</span>;</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## SELECTION</span></span>
-<span class="r-in"><span class="co">## print the amount of Individuals selected. Check if the amount </span></span>
-<span class="r-in"><span class="co">## of Turbines is as requested.</span></span>
-<span class="r-in"><span class="va">selec6best</span> <span class="op">&lt;-</span> <span class="fu">selection</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Grid</span>, <span class="fl">2</span>, <span class="cn">TRUE</span>, <span class="fl">6</span>, <span class="st">"VAR"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">selec6best</span> <span class="op">&lt;-</span> <span class="fu">selection</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Grid</span>, <span class="fl">2</span>, <span class="cn">TRUE</span>, <span class="fl">6</span>, <span class="st">"FIX"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">selec6best</span> <span class="op">&lt;-</span> <span class="fu">selection</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Grid</span>, <span class="fl">4</span>, <span class="cn">FALSE</span>, <span class="fl">6</span>, <span class="st">"FIX"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## Exemplary input Polygon with 2km x 2km:</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">Polygon1</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html" class="external-link">st_sfc</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html" class="external-link">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4498482</span>, <span class="fl">4498482</span>, <span class="fl">4499991</span>, <span class="fl">4499991</span>, <span class="fl">4498482</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2668272</span>, <span class="fl">2669343</span>, <span class="fl">2669343</span>, <span class="fl">2668272</span>, <span class="fl">2668272</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>  crs <span class="op">=</span> <span class="fl">3035</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Calculate a Grid and an indexed data.frame with coordinates and grid cell Ids.</span></span></span>
+<span class="r-in"><span><span class="va">Grid1</span> <span class="op">&lt;-</span> <span class="fu"><a href="grid_area.html">grid_area</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="va">Polygon1</span>, size <span class="op">=</span> <span class="fl">200</span>, prop <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>;</span></span>
+<span class="r-in"><span><span class="va">Grid</span> <span class="op">&lt;-</span> <span class="va">Grid1</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">AmountGrids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Grid</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">startsel</span> <span class="op">&lt;-</span> <span class="fu"><a href="init_population.html">init_population</a></span><span class="op">(</span><span class="va">Grid</span>,<span class="fl">10</span>,<span class="fl">20</span><span class="op">)</span>;</span></span>
+<span class="r-in"><span><span class="va">wind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>ws<span class="op">=</span><span class="fl">12</span>,wd<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">wind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">wind</span>, probab <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="fitness.html">fitness</a></span><span class="op">(</span>selection <span class="op">=</span> <span class="va">startsel</span>, referenceHeight <span class="op">=</span> <span class="fl">100</span>, RotorHeight<span class="op">=</span><span class="fl">100</span>,</span></span>
+<span class="r-in"><span>               SurfaceRoughness<span class="op">=</span><span class="fl">0.3</span>, Polygon <span class="op">=</span> <span class="va">Polygon1</span>, resol1 <span class="op">=</span> <span class="fl">200</span>,</span></span>
+<span class="r-in"><span>               rot <span class="op">=</span> <span class="fl">20</span>, dirspeed <span class="op">=</span> <span class="va">wind</span>, </span></span>
+<span class="r-in"><span>               srtm_crop <span class="op">=</span> <span class="st">""</span>, topograp <span class="op">=</span> <span class="cn">FALSE</span>, cclRaster <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">allparks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">"rbind"</span>,<span class="va">fit</span><span class="op">)</span>;</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## SELECTION</span></span></span>
+<span class="r-in"><span><span class="co">## print the amount of Individuals selected. Check if the amount </span></span></span>
+<span class="r-in"><span><span class="co">## of Turbines is as requested.</span></span></span>
+<span class="r-in"><span><span class="va">selec6best</span> <span class="op">&lt;-</span> <span class="fu">selection</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Grid</span>, <span class="fl">2</span>, <span class="cn">TRUE</span>, <span class="fl">6</span>, <span class="st">"VAR"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">selec6best</span> <span class="op">&lt;-</span> <span class="fu">selection</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Grid</span>, <span class="fl">2</span>, <span class="cn">TRUE</span>, <span class="fl">6</span>, <span class="st">"FIX"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">selec6best</span> <span class="op">&lt;-</span> <span class="fu">selection</span><span class="op">(</span><span class="va">fit</span>, <span class="va">Grid</span>, <span class="fl">4</span>, <span class="cn">FALSE</span>, <span class="fl">6</span>, <span class="st">"FIX"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -152,7 +167,7 @@ the development of the fitness values. Default is "FIX"</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
